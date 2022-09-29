@@ -1,0 +1,12 @@
+numbers[5]				42
+*p					16
+*(p + 1)				23
+*(p - 1)				15
+p[0]					16
+p[1]					23
+p[-2]					8
+*numbers				4
+*(numbers + 5)				42
+p - numbers				3
+(short*)p - (short*)numbers		6
+(char*)p - (char*)numbers		12
