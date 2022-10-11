@@ -20,7 +20,7 @@ int main(int argc, char const *argv[])
 	{
 		++number_of_words;
 
-		char string[100] = fscanf(start, "%s", words[number_of_words]);
+		char string[100] = fscanf(start, "%99s", words[number_of_words]);
 		char* str = &string[0];
 
 		int r = 1;

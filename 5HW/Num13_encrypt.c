@@ -39,9 +39,22 @@ int main(int argc, char const *argv[])
 {
 	const int n = argv[argc - 1];
 
-	for (int i = 1; i < argc - 1; ++i)
+	FILE* start = fopen("three_little_pigs.txt", "r");
+	FILE* end = fopen("result.txt", "w");
+	char words[500][100];
+	int number_of_words = 0;
+
+	while (fscanf(start, "%s", words[number_of_words]) != -1)
 	{
-		char* t = argv[i][0];
-		encrypt(t, n);
+		++number_of_words;
+
+		char string[100] = fscanf(start, "%99s", words[number_of_words]);
+		char* str = &string[0];
+
+		encrypt(str, n);
+		fprintf(end, "%s\n", string);
 	}
+
+	fclose(end);
+	fclose(start);
 }
