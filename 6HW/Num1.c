@@ -33,7 +33,6 @@ void print_triangle(Triangle t)
 	printf(", ");
 	print_point(t.c);
 	printf("}");
-
 }
 
 
