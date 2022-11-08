@@ -20,12 +20,9 @@ int main()
 
     book** p = (book**)malloc(sizeof(book*));
 
-    *p = (book*)malloc(sizeof(book));
-
     **p = b;
 
     printf("Book: %s, Pages: %i, Price: %0.2lf\n", (**p).title, (**p).pages, (**p).price);
 
-    free(*p);
     free(p);
 }
