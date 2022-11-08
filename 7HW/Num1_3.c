@@ -6,11 +6,13 @@
 
 int main()
 {
-    char* p = (char*)malloc(sizeof(char) * 14);
+    char** p = (char**)malloc(sizeof(char*));
     
-    strcpy(p, "Cats and Dogs");
+    *p = (char*)malloc(sizeof(char) * 14);
+    
+    strcpy(**p, "Cats and Dogs");
 
-    printf("%s\n", p);
+    printf("%s\n", **p);
 
     free(p);
 }
