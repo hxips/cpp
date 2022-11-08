@@ -10,9 +10,7 @@ int main()
 
 	strcpy(p, "Elephant");
 
-	for (size_t i = 0; i < 8; ++i)
-        printf("%c", p[i]);
-    printf("\n");
+    printf("%s\n", p);
 
     free(p);
 }
