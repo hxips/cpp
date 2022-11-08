@@ -33,4 +33,6 @@ int main()
 	printf("Book: %s, Pages: %i, Price: %0.2lf\n", p[0].title, p[0].pages, p[0].price);
 	printf("Book: %s, Pages: %i, Price: %0.2lf\n", p[1].title, p[1].pages, p[1].price);
 	printf("Book: %s, Pages: %i, Price: %0.2lf\n", p[2].title, p[2].pages, p[2].price);
+	
+	free(p);
 }
