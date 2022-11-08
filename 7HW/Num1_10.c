@@ -36,15 +36,14 @@ void library_create(library* lib, int num)
 
 	lib->number_of_books = num;
 
-	for (int i = 0; i < num; ++i)
-        lib->books[i].title = (char*)malloc(sizeof(char) * 128);
-
 	return;
 }
 
 
 void library_set(library* lib, int i, char name[], int page, float money)
 {
+	lib->books[i].title = (char*)malloc(sizeof(name));
+	
 	strcpy(lib->books[i].title, name);
 	lib->books[i].pages = page;
 	lib->books[i].price = money;
