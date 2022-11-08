@@ -36,92 +36,59 @@ void print_strings(FILE* stream, char** string_array)
 
 char** load_lines(const char* filename)
 {
-    FILE* file = fopen(filename, "r");
+    FILE* f = fopen(filename, "r");
 
-    int lines = 1;
+    int strings = 1;
 
-    while (1)
+    char sim;
+
+    do{
+        sim = fgetc(f);
+
+        if (sim == '\n')
+            ++strings;
+
+    } while(sim != EOF);
+
+    char** p = (char**)malloc(sizeof(char*) * (strings + 1));
+
+
+    fseek(f, 0, SEEK_SET);
+
+
+    int* num = (int*)malloc(strings);
+
+    for (int i = 0; i < strings; ++i)
     {
-        int sim = fgetc(file);
+        int k = -1;
 
-        if (sim == EOF)
-            break;
+        do{
+            sim = fgetc(f);
 
-        else if (sim == '\n')
-            ++lines;
+            ++k;
+
+        } while(sim != EOF && sim != '\n');
+
+        num[i] = k;
     }
 
-    char** res = (char**)malloc((lines + 1) * sizeof(char*));
+    for (int i = 0; i < strings; ++i)
+        p[i] = (char*)malloc((num[i] + 1) * sizeof(char));
 
-    fseek(file, 0, SEEK_SET);
+    free(num);
 
-    int* simbs = (int*)malloc(lines * sizeof(int));
 
-    int count = 0;
-    int string = 0;
+    fseek(f, 0, SEEK_SET);
 
-    while (1)
-    {
-        int sim = fgetc(file);
 
-        if (sim == EOF)
-        {
-            simbs[string] = count;
-            break;
-        }
-            
-        else if (sim == '\n')
-        {
-            simbs[string] = count;
-            count = 0;
-            ++string;
-        }
-            
-        else
-            ++count;
-        
-    }
+    for (int i = 0; i < strings; ++i)
+        fscanf(f, "%s", p[i]);
 
-    for (int i = 0; i < string; ++i)
-        res[i] = (char*)malloc((simbs[i] + 1) * sizeof(char));
-    
-    free(simbs);
+    fclose(f);
 
-    fseek(file, 0, SEEK_SET);
+    p[strings] = NULL;
 
-    string = 0;
-    count = 0;
-
-    while (1)
-    {
-        int sim = fgetc(file);
-    
-        if (sim == EOF)
-        {
-            res[string][count] = '\0';
-            ++string;
-            break;
-        }
-            
-        else if (sim == '\n')
-        {
-            res[string][count] = '\0';
-            count = 0;
-            ++string;
-        }
-            
-        else
-        {
-            res[string][count] = sim;
-            ++count;
-        }
-    }
-
-    fclose(file);
-
-    res[string] = NULL;
-
-    return res;
+    return p;
 }
 
 
