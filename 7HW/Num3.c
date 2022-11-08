@@ -141,5 +141,5 @@ int main()
     print_strings(stdout, test);
     sort_strings(test);
     print_strings(stdout, test);
-    destroy_strings(&test)
+    destroy_strings(&test);
 }
