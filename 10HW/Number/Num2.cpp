@@ -59,7 +59,6 @@ public:
         // Например, число 12345678 представится в виде массива [78, 56, 34, 12]
 
         data = new char[capacity];
-
         for (int i = 0; i < capacity; ++i)
         {
             data[i] = a % base;
@@ -104,7 +103,7 @@ public:
         capacity = (k + 1) / 2;
         data = new char[capacity];
 
-
+        
         int start = 0;
 
         if (k % 2)
@@ -199,7 +198,9 @@ public:
     {
         return (data[0] % 2 == 0);
     }
-
+    /*
+    IN DEVELOPMENT
+    
     Number operator*(const Number& right)
     {
         Number res;
@@ -243,7 +244,7 @@ public:
 
         return res;
     }
-
+    */
     ~Number()
     {
         delete[] data;
@@ -303,21 +304,21 @@ int main()
 {
     Number x = 12345;
     Number y = 0;
-//    std::cout << x << " " << y << std::endl;
+    std::cout << x << " " << y << std::endl;
 
     Number a(459);
     Number b(a);
-//    Number c("659111515154545455656194515");
-//    Number d("4898545552164545454");
-//    Number e = a;
-//    Number f = (c + d);
-//    std::cout << a << " " << b << " " << c << " " << d << " " << e << std::endl;
-//    std::cout << f << std::endl;
-//    f += c;
-//    std::cout << f << std::endl;
-//    Number g = fibanacci(1000);
-//    std::cout << g << std::endl;
-//    std::cout << a.isEven() << std::endl;
-    Number h = (a * b);
-    std::cout << h << std::endl;
+    Number c("659111515154545455656194515");
+    Number d("4898545552164545454");
+    Number e = a;
+    Number f = (c + d);
+    std::cout << a << " " << b << " " << c << " " << d << " " << e << std::endl;
+    std::cout << f << std::endl;
+    f += c;
+    std::cout << f << std::endl;
+    Number g = fibanacci(1000);
+    std::cout << g << std::endl;
+    std::cout << a.isEven() << std::endl;
+//    Number h = (a * b);
+//    std::cout << h << std::endl;
 }
