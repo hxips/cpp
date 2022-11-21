@@ -195,10 +195,53 @@ public:
     }
 
 
-
     bool isEven()
     {
         return (data[0] % 2 == 0);
+    }
+
+    Number operator*(const Number& right)
+    {
+        Number res;
+
+        if (size < right.size)
+        {
+            res.size = right.size;
+            res.capacity = right.size + 2;
+        }
+        else
+        {
+            res.size = size;
+            res.capacity = size + 2;
+        }
+
+        res.data = new char[res.capacity];
+        for (int i = 0; i < res.size; ++i)
+            res.data[i] = 0;
+
+
+        int add = 0;
+        Number mult;
+
+        for (int j = 0; j < size; ++j)
+        {
+            mult = 0;
+
+            for (int i = 0; i < right.size; ++i)
+            {
+                mult += data[j] * right.data[i];
+            }
+
+            res += mult;
+        }
+
+        if (add != 0)
+        {
+            res.data[res.size] = add;
+            ++res.size;
+        }
+
+        return res;
     }
 
     ~Number()
@@ -263,7 +306,7 @@ int main()
 //    std::cout << x << " " << y << std::endl;
 
     Number a(459);
-//    Number b(a);
+    Number b(a);
 //    Number c("659111515154545455656194515");
 //    Number d("4898545552164545454");
 //    Number e = a;
@@ -272,7 +315,9 @@ int main()
 //    std::cout << f << std::endl;
 //    f += c;
 //    std::cout << f << std::endl;
-    Number g = fibanacci(1000);
-    std::cout << g << std::endl;
-
+//    Number g = fibanacci(1000);
+//    std::cout << g << std::endl;
+//    std::cout << a.isEven() << std::endl;
+    Number h = (a * b);
+    std::cout << h << std::endl;
 }
